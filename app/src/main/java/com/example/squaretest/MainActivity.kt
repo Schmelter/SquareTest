@@ -1,47 +1,62 @@
 package com.example.squaretest
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import android.widget.FrameLayout
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentContainerView
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.squaretest.ui.theme.SquareTestTheme
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-class MainActivity : ComponentActivity() {
+class MainActivity : FragmentActivity() {
+
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
+        var keepSplashScreen = true
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        splashScreen.setKeepOnScreenCondition { keepSplashScreen }
+        lifecycleScope.launch {
+            delay(3000)
+            keepSplashScreen = false
+        }
+
         setContent {
             SquareTestTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                AndroidView(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    factory = { ctx ->
+                        FragmentContainerView(ctx).apply {
+                            id = R.id.nav_host_fragment
+                            layoutParams = FrameLayout.LayoutParams(
+                                FrameLayout.LayoutParams.MATCH_PARENT,
+                                FrameLayout.LayoutParams.MATCH_PARENT
+                            )
+                        }
+                    },
+                    update = { fragmentContainerView ->
+                        if (supportFragmentManager.findFragmentById(fragmentContainerView.id) == null) {
+                            val navHostFragment = NavHostFragment.create(R.navigation.mobile_navigation)
+                            supportFragmentManager.beginTransaction()
+                                .replace(fragmentContainerView.id, navHostFragment)
+                                .setPrimaryNavigationFragment(navHostFragment)
+                                .commitNow()
+
+                            this.navController = navHostFragment.navController
+                        }
+                    }
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SquareTestTheme {
-        Greeting("Android")
     }
 }

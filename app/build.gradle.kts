@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -40,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
     packaging {
         resources {
@@ -76,6 +79,15 @@ dependencies {
 
     // Coil for images
     api("io.coil-kt:coil-compose:2.6.0")
+
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:2.8.7")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.7")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.8.7")
+
+    // Splash screen
+    implementation("androidx.core:core-splashscreen:1.0.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
