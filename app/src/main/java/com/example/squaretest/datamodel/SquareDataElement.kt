@@ -14,7 +14,7 @@ data class SquareDataElement(
     val employeeType: EmployeeType
 )
 
-enum class EmployeeType(displayText: String) {
+enum class EmployeeType(val displayText: String) {
     FULL_TIME("Full Time"),
     PART_TIME("Part Time"),
     CONTRACTOR("Contractor")
