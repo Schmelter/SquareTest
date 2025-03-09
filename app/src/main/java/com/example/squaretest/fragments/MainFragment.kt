@@ -14,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.squaretest.ui.theme.SquareTestTheme
 import com.example.squaretest.viewmodels.MainViewModel
+import com.example.squaretest.views.MainView
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -32,7 +33,11 @@ class MainFragment: Fragment(0) {
             setContent {
                 SquareTestTheme {
                     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
-
+                    MainView(
+                        uiState = uiState.value,
+                        onLoad = viewModel::onLoad,
+                        onReset = viewModel::onReset
+                    )
                 }
             }
         }

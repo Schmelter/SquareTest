@@ -64,8 +64,8 @@ fun MainRowView(
                         bottom.linkTo(parent.bottom)
                         absoluteRight.linkTo(parent.absoluteRight)
 
-                        height = Dimension.value(50.dp)
-                        width = Dimension.value(50.dp)
+                        height = Dimension.value(100.dp)
+                        width = Dimension.value(100.dp)
 
                         rightRef = photoImage.absoluteLeft
                     }
@@ -214,7 +214,7 @@ fun MainRowView(
 }
 
 
-@Preview(widthDp = 327, heightDp = 200)
+@Preview(widthDp = 450, heightDp = 200)
 @Composable
 fun RowWithAllData() {
     val dataElement = SquareDataElement(
@@ -247,7 +247,7 @@ fun RowWithAllData() {
     }
 }
 
-@Preview(widthDp =327, heightDp = 200)
+@Preview(widthDp = 450, heightDp = 200)
 @Composable
 fun RowWithNoOptionalData() {
     val dataElement = SquareDataElement(

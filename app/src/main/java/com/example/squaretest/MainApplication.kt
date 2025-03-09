@@ -3,6 +3,7 @@ package com.example.squaretest
 import android.app.Application
 import com.example.squaretest.koin.apiModule
 import com.example.squaretest.koin.appModule
+import com.example.squaretest.koin.networkModule
 import com.example.squaretest.koin.repositoryModule
 import com.example.squaretest.koin.viewModule
 import org.koin.android.ext.koin.androidContext
@@ -23,6 +24,7 @@ class MainApplication : Application() {
             modules(
                 listOf(
                     appModule,
+                    networkModule,
                     apiModule,
                     repositoryModule,
                     viewModule

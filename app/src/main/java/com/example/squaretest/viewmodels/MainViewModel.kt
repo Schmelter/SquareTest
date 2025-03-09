@@ -64,7 +64,9 @@ class MainViewModel(
                 is ResultWrapper.Success -> {
                     updateUiState { old ->
                         old.copy(
-                            employees = result.data,
+                            employees = result.data?.sortedBy { employee ->
+                                employee.fullName
+                            },
                             errorMessage = null,
                             isLoading = false
                         )

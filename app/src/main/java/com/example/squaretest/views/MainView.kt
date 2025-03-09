@@ -170,7 +170,7 @@ fun MainView(
     }
 }
 
-@Preview(widthDp = 327, heightDp = 500)
+@Preview(widthDp = 450, heightDp = 500)
 @Composable
 fun MainViewNoDataNoMessage() {
     val uiState = MainViewModelState(
@@ -192,7 +192,7 @@ fun MainViewNoDataNoMessage() {
     }
 }
 
-@Preview(widthDp = 327, heightDp = 500)
+@Preview(widthDp = 450, heightDp = 500)
 @Composable
 fun MainViewNoDataWithMessage() {
     val uiState = MainViewModelState(
@@ -214,7 +214,7 @@ fun MainViewNoDataWithMessage() {
     }
 }
 
-@Preview(widthDp = 327, heightDp = 500)
+@Preview(widthDp = 450, heightDp = 500)
 @Composable
 fun MainViewLoading() {
     val uiState = MainViewModelState(
@@ -236,7 +236,7 @@ fun MainViewLoading() {
     }
 }
 
-@Preview(widthDp = 327, heightDp = 500)
+@Preview(widthDp = 450, heightDp = 500)
 @Composable
 fun MainViewWithNoEmployees() {
     val uiState = MainViewModelState(
@@ -260,7 +260,7 @@ fun MainViewWithNoEmployees() {
     }
 }
 
-@Preview(widthDp = 327, heightDp = 500)
+@Preview(widthDp = 450, heightDp = 500)
 @Composable
 fun MainViewWithManyEmployeesAllData() {
     val uiState = MainViewModelState(
@@ -316,7 +316,7 @@ fun MainViewWithManyEmployeesAllData() {
     }
 }
 
-@Preview(widthDp = 327, heightDp = 500)
+@Preview(widthDp = 450, heightDp = 500)
 @Composable
 fun MainViewWithManyEmployeesNoData() {
     val uiState = MainViewModelState(

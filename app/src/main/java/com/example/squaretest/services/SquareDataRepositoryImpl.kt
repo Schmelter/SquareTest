@@ -5,6 +5,7 @@ import com.example.squaretest.datamodel.EmployeeType
 import com.example.squaretest.datamodel.ResultWrapper
 import com.example.squaretest.datamodel.SquareDataElement
 import com.example.squaretest.datamodel.SquareDataElementRaw
+import com.example.squaretest.datamodel.SquareDataElementRawArray
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -41,21 +42,21 @@ class SquareDataRepositoryImpl(
         }
     }
 
-    fun parseRawResult(rawResults: List<SquareDataElementRaw>): List<SquareDataElement> {
+    fun parseRawResult(rawResults: SquareDataElementRawArray): List<SquareDataElement> {
         val mutableResults = mutableListOf<SquareDataElement>()
-        for (rawResult in rawResults) {
+        for (rawResult in rawResults.employees) {
             // Check that everything exists that should, and parse the enum
-            val uuid: String = rawResult.uuid ?: throw ParseException("Cannot parse UUID: MISSING")
-            val fullName: String = rawResult.fullName ?: throw ParseException("Cannot parse Full Name: MISSING")
-            val emailAddress: String = rawResult.emailAddress ?: throw ParseException("Cannot parse Email Address: MISSING")
-            val team: String = rawResult.team ?: throw ParseException("Cannot parse Team: MISSING")
+            val uuid: String = rawResult.uuid ?: continue
+            val fullName: String = rawResult.fullName ?: continue
+            val emailAddress: String = rawResult.emailAddress ?: continue
+            val team: String = rawResult.team ?: continue
             val employeeType: EmployeeType = if (rawResult.employeeType == null) {
                 throw ParseException("Cannot parse Employee Type: MISSING")
             } else {
                 try {
                     EmployeeType.valueOf(rawResult.employeeType)
                 } catch (ex: IllegalArgumentException) {
-                    throw ParseException("Cannot parse Employee Type: ${rawResult.employeeType}")
+                    continue
                 }
             }
 
