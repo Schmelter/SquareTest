@@ -1,8 +1,6 @@
 package com.example.squaretest.datamodel
 
-import com.google.gson.annotations.SerializedName
-
-data class SquareDataElement(
+data class EmployeeElement(
     val uuid: String,
     val fullName: String,
     val phoneNumber: String?,

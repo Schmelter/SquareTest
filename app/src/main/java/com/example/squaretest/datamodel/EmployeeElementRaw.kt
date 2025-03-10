@@ -2,11 +2,11 @@ package com.example.squaretest.datamodel
 
 import com.google.gson.annotations.SerializedName
 
-data class SquareDataElementRawArray(
-    @SerializedName("employees") val employees: List<SquareDataElementRaw>
+data class EmployeeElementRawArray(
+    @SerializedName("employees") val employees: List<EmployeeElementRaw>
 )
 
-data class SquareDataElementRaw(
+data class EmployeeElementRaw(
     @SerializedName("uuid") val uuid: String?,
     @SerializedName("full_name") val fullName: String?,
     @SerializedName("phone_number") val phoneNumber: String?,

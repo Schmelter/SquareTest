@@ -3,11 +3,9 @@ package com.example.squaretest.views
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Arrangement.Vertical
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
@@ -24,10 +22,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.ConstraintLayoutScope
 import androidx.constraintlayout.compose.Dimension
 import com.example.squaretest.datamodel.EmployeeType
-import com.example.squaretest.datamodel.SquareDataElement
+import com.example.squaretest.datamodel.EmployeeElement
 import com.example.squaretest.fragments.MainViewModelState
 import com.example.squaretest.views.subviews.MainRowView
 
@@ -265,7 +262,7 @@ fun MainViewWithNoEmployees() {
 fun MainViewWithManyEmployeesAllData() {
     val uiState = MainViewModelState(
         employees = listOf(
-            SquareDataElement(
+            EmployeeElement(
                 uuid = "UUID 1",
                 fullName = "Full Name 1",
                 phoneNumber = "Phone Number 1",
@@ -276,7 +273,7 @@ fun MainViewWithManyEmployeesAllData() {
                 team = "Team 1",
                 employeeType = EmployeeType.FULL_TIME
             ),
-            SquareDataElement(
+            EmployeeElement(
                 uuid = "UUID 2",
                 fullName = "Full Name 2",
                 phoneNumber = "Phone Number 2",
@@ -287,7 +284,7 @@ fun MainViewWithManyEmployeesAllData() {
                 team = "Team 2",
                 employeeType = EmployeeType.PART_TIME
             ),
-            SquareDataElement(
+            EmployeeElement(
                 uuid = "UUID 3",
                 fullName = "Full Name 3",
                 phoneNumber = "Phone Number 3",
@@ -321,7 +318,7 @@ fun MainViewWithManyEmployeesAllData() {
 fun MainViewWithManyEmployeesNoData() {
     val uiState = MainViewModelState(
         employees = listOf(
-            SquareDataElement(
+            EmployeeElement(
                 uuid = "UUID 1",
                 fullName = "Full Name 1",
                 phoneNumber = null,
@@ -332,7 +329,7 @@ fun MainViewWithManyEmployeesNoData() {
                 team = "Team 1",
                 employeeType = EmployeeType.FULL_TIME
             ),
-            SquareDataElement(
+            EmployeeElement(
                 uuid = "UUID 2",
                 fullName = "Full Name 2",
                 phoneNumber = null,
@@ -343,7 +340,7 @@ fun MainViewWithManyEmployeesNoData() {
                 team = "Team 2",
                 employeeType = EmployeeType.PART_TIME
             ),
-            SquareDataElement(
+            EmployeeElement(
                 uuid = "UUID 3",
                 fullName = "Full Name 3",
                 phoneNumber = null,

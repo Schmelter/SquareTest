@@ -2,12 +2,7 @@ package com.example.squaretest.views.subviews
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -25,12 +20,12 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.compose.SubcomposeAsyncImage
 import com.example.squaretest.datamodel.EmployeeType
-import com.example.squaretest.datamodel.SquareDataElement
+import com.example.squaretest.datamodel.EmployeeElement
 
 
 @Composable
 fun MainRowView(
-    dataElement: SquareDataElement,
+    dataElement: EmployeeElement,
     modifier: Modifier = Modifier
 ) {
     ConstraintLayout(
@@ -217,7 +212,7 @@ fun MainRowView(
 @Preview(widthDp = 450, heightDp = 200)
 @Composable
 fun RowWithAllData() {
-    val dataElement = SquareDataElement(
+    val dataElement = EmployeeElement(
         uuid = "UUID 1",
         fullName = "Full Name 1",
         phoneNumber = "Phone Number 1",
@@ -250,7 +245,7 @@ fun RowWithAllData() {
 @Preview(widthDp = 450, heightDp = 200)
 @Composable
 fun RowWithNoOptionalData() {
-    val dataElement = SquareDataElement(
+    val dataElement = EmployeeElement(
         uuid = "UUID 1",
         fullName = "Full Name 1",
         phoneNumber = null,

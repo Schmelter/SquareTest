@@ -1,22 +1,21 @@
 package com.example.squaretest.services
 
-import com.example.squaretest.api.SquareApi
+import com.example.squaretest.api.EmployeeApi
 import com.example.squaretest.datamodel.EmployeeType
 import com.example.squaretest.datamodel.ResultWrapper
-import com.example.squaretest.datamodel.SquareDataElement
-import com.example.squaretest.datamodel.SquareDataElementRaw
-import com.example.squaretest.datamodel.SquareDataElementRawArray
+import com.example.squaretest.datamodel.EmployeeElement
+import com.example.squaretest.datamodel.EmployeeElementRawArray
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.IllegalArgumentException
 
-class SquareDataRepositoryImpl(
-    private val squareApi: SquareApi,
+class EmployeeRepositoryImpl(
+    private val squareApi: EmployeeApi,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
-): SquareDataRepository {
+): EmployeeRepository {
 
-    override suspend fun getSquareData(): ResultWrapper<List<SquareDataElement>> {
+    override suspend fun getSquareData(): ResultWrapper<List<EmployeeElement>> {
         return withContext(dispatcher) {
             try {
                 val rawResults = squareApi.getEmployeesData()
@@ -42,8 +41,8 @@ class SquareDataRepositoryImpl(
         }
     }
 
-    fun parseRawResult(rawResults: SquareDataElementRawArray): List<SquareDataElement> {
-        val mutableResults = mutableListOf<SquareDataElement>()
+    fun parseRawResult(rawResults: EmployeeElementRawArray): List<EmployeeElement> {
+        val mutableResults = mutableListOf<EmployeeElement>()
         for (rawResult in rawResults.employees) {
             // Check that everything exists that should, and parse the enum
             val uuid: String = rawResult.uuid ?: continue
@@ -61,7 +60,7 @@ class SquareDataRepositoryImpl(
             }
 
             mutableResults.add(
-                SquareDataElement(
+                EmployeeElement(
                     uuid,
                     fullName,
                     rawResult.phoneNumber,
