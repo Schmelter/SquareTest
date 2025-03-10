@@ -5,6 +5,6 @@ import com.example.squaretest.datamodel.EmployeeElement
 
 interface EmployeeRepository {
 
-    suspend fun getSquareData(): ResultWrapper<List<EmployeeElement>>
+    suspend fun getEmployees(): ResultWrapper<List<EmployeeElement>>
 
 }

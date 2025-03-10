@@ -15,7 +15,7 @@ class EmployeeRepositoryImpl(
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ): EmployeeRepository {
 
-    override suspend fun getSquareData(): ResultWrapper<List<EmployeeElement>> {
+    override suspend fun getEmployees(): ResultWrapper<List<EmployeeElement>> {
         return withContext(dispatcher) {
             try {
                 val rawResults = squareApi.getEmployeesData()
@@ -41,7 +41,7 @@ class EmployeeRepositoryImpl(
         }
     }
 
-    fun parseRawResult(rawResults: EmployeeElementRawArray): List<EmployeeElement> {
+    private fun parseRawResult(rawResults: EmployeeElementRawArray): List<EmployeeElement> {
         val mutableResults = mutableListOf<EmployeeElement>()
         for (rawResult in rawResults.employees) {
             // Check that everything exists that should, and parse the enum
@@ -50,7 +50,7 @@ class EmployeeRepositoryImpl(
             val emailAddress: String = rawResult.emailAddress ?: continue
             val team: String = rawResult.team ?: continue
             val employeeType: EmployeeType = if (rawResult.employeeType == null) {
-                throw ParseException("Cannot parse Employee Type: MISSING")
+                continue
             } else {
                 try {
                     EmployeeType.valueOf(rawResult.employeeType)

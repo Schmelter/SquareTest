@@ -7,7 +7,6 @@ import com.example.squaretest.datamodel.ResultWrapper
 import com.example.squaretest.fragments.MainViewModelState
 import com.example.squaretest.services.EmployeeRepository
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -49,7 +48,7 @@ class MainViewModel(
         }
 
         viewModelScope.launch(coroutineExceptionHandler) {
-            val result = squareResp.getSquareData()
+            val result = squareResp.getEmployees()
             when (result) {
                 is ResultWrapper.Success -> {
                     updateUiState { old ->
